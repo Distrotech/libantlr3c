@@ -150,7 +150,7 @@ AC_PROG_MAKE_SET
 # Checks for header files.
 AC_INCLUDES_DEFAULT()
 AC_HEADER_RESOLV
-AC_CHECK_HEADERS([sys/malloc.h malloc.h], [], [],
+AC_CHECK_HEADERS([sys/malloc.h malloc.h linux/version.h], [], [],
 [[#ifdef HAVE_SYS_MALLOC_H
 #include <sys/malloc.h>
 #endif
@@ -191,6 +191,8 @@ AC_CHECK_HEADERS([sys/socket.h socket.h], [], [],
 #endif
 ]])
 
+AM_CONDITIONAL([WIN32SYSTEM], [test "x$ac_cv_header_linux_version_h" = "xno"])
+
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_TYPE_SIZE_T
@@ -211,6 +213,7 @@ AC_C_INLINE
 AC_CHECK_FUNCS([memmove memset strdup accept])
 
 AC_CONFIG_MACRO_DIR([m4])
+AC_LIBTOOL_WIN32_DLL
 
 AC_CONFIG_HEADERS(antlr3config.h)
 AC_CONFIG_FILES([Makefile])

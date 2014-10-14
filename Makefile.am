@@ -4,6 +4,10 @@ AM_LIBTOOLFLAGS =
 ACLOCAL_AMFLAGS = -I m4
 lib_LTLIBRARIES = libantlr3c.la
 
+if WIN32SYSTEM
+  SYSLDFLAGS = -no-undefined -lwsock32
+endif
+
 LIBSOURCES		=	src/antlr3baserecognizer.c			\
 					src/antlr3basetree.c				\
 					src/antlr3basetreeadaptor.c			\
@@ -62,7 +66,7 @@ include_HEADERS =	include/antlr3.h						\
 					include/antlr3treeparser.h				\
 					antlr3config.h
 
-libantlr3c_la_LDFLAGS = -avoid-version
+libantlr3c_la_LDFLAGS = -avoid-version $(SYSLDFLAGS)
 
 INCLUDES = -Iinclude
 
