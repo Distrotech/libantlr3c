@@ -231,6 +231,7 @@ ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AR = @AR@
+AS = @AS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -347,6 +348,7 @@ AUTOMAKE_OPTIONS = gnu
 AM_LIBTOOLFLAGS = 
 ACLOCAL_AMFLAGS = -I m4
 lib_LTLIBRARIES = libantlr3c.la
+@WIN32SYSTEM_TRUE@SYSLDFLAGS = -no-undefined -lwsock32
 LIBSOURCES = src/antlr3baserecognizer.c			\
 					src/antlr3basetree.c				\
 					src/antlr3basetreeadaptor.c			\
@@ -404,7 +406,7 @@ include_HEADERS = include/antlr3.h						\
 					include/antlr3treeparser.h				\
 					antlr3config.h
 
-libantlr3c_la_LDFLAGS = -avoid-version
+libantlr3c_la_LDFLAGS = -avoid-version $(SYSLDFLAGS)
 INCLUDES = -Iinclude
 EXTRA_DIST = \
 				vsrulefiles/antlr3lexerandparser.rules		\
